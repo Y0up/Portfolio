@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PhotoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,28 @@ class Photo
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="photos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $country;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Setting::class, inversedBy="photos")
+     */
+    private $setting;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="photos")
+     */
+    private $category;
+
+    public function __construct()
+    {
+        $this->setting = new ArrayCollection();
+        $this->category = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +144,70 @@ class Photo
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Setting[]
+     */
+    public function getSetting(): Collection
+    {
+        return $this->setting;
+    }
+
+    public function addSetting(Setting $setting): self
+    {
+        if (!$this->setting->contains($setting)) {
+            $this->setting[] = $setting;
+        }
+
+        return $this;
+    }
+
+    public function removeSetting(Setting $setting): self
+    {
+        if ($this->setting->contains($setting)) {
+            $this->setting->removeElement($setting);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->category->contains($category)) {
+            $this->category->removeElement($category);
+        }
 
         return $this;
     }

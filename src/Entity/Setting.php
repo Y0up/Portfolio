@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SettingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Setting
      * @ORM\Column(type="decimal", precision=2, scale=1, nullable=true)
      */
     private $focal;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Photo::class, mappedBy="setting")
+     */
+    private $photos;
+
+    public function __construct()
+    {
+        $this->photos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,34 @@ class Setting
     public function setFocal(?string $focal): self
     {
         $this->focal = $focal;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Photo[]
+     */
+    public function getPhotos(): Collection
+    {
+        return $this->photos;
+    }
+
+    public function addPhoto(Photo $photo): self
+    {
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->addSetting($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhoto(Photo $photo): self
+    {
+        if ($this->photos->contains($photo)) {
+            $this->photos->removeElement($photo);
+            $photo->removeSetting($this);
+        }
 
         return $this;
     }
