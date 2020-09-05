@@ -30,7 +30,7 @@ class Setting
     private $shutter;
 
     /**
-     * @ORM\Column(type="decimal", precision=2, scale=1, nullable=true)
+     * @ORM\Column(type="decimal", precision=3, scale=1, nullable=true)
      */
     private $focal;
 
