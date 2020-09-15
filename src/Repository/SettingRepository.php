@@ -36,15 +36,21 @@ class SettingRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Setting
+
+    public function findAllIso()
     {
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('s.iso is not NULL')
+            ->orderBy('s.iso', 'ASC')
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->execute();
     }
-    */
+    public function findAllShutter()
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.shutter is not NULL')
+            ->orderBy('s.shutter', 'ASC')
+            ->getQuery()
+            ->execute();
+    }
 }
