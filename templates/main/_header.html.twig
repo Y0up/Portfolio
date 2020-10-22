@@ -1,0 +1,46 @@
+<nav>
+	<ul>
+		<li>
+			<a href="{{path('photo_index')}}">Logo</a>
+		</li>
+		<li>
+			<a href="{{path('photo_index')}}">Acceuil</a>
+		</li>
+		<li>
+			<a href="{{path('photo_index')}}">Pays</a>
+			<ul>
+				{% for countries in country %}
+					<li>
+						<a href="">{{countries.name}}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+		<li>
+			<a href="{{path('photo_index')}}">Thèmes</a>
+			<ul>
+				{% for categories in category %}
+					<li>
+						<a href="">{{categories.name}}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<a href="{{path('photo_index')}}">Shop</a>
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<a href="{{path('photo_index')}}">Contact</a>
+		</li>
+		<li>
+			<a href="{{path('photo_index')}}">A propos</a>
+		</li>
+	</ul>
+	<ul>
+		<li><img src="" alt=""></li>
+	</ul>
+</nav>

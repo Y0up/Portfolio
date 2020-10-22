@@ -69,9 +69,9 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 50; $i++) {
             $photo = new Photo();
-            $photo->setImage($faker->imageUrl($width = 640, $height = 480));
+            $photo->setImage('https://picsum.photos/200/300');
             $photo->setTitle($faker->word);
-            $photo->setDescription($faker->paragraph($nbSentences = 3, $variableNbSentences = true));
+            $photo->setDescription($faker->paragraph($nbSentences = 2, $variableNbSentences = true));
             $photo->setAddress($faker->city);
             $photo->setCountry($faker->randomElement($countryList));
             $photo->addCategory($faker->randomElement($categoryList));

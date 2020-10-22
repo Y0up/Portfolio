@@ -6,6 +6,8 @@ use App\Entity\Category;
 use App\Entity\Country;
 use App\Entity\Photo;
 use App\Form\PhotoType;
+use App\Repository\CategoryRepository;
+use App\Repository\CountryRepository;
 use App\Repository\PhotoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +22,16 @@ class PhotoController extends AbstractController
     /**
      * @Route("/", name="photo_index", methods={"GET"})
      */
-    public function index(PhotoRepository $photoRepository): Response
+    public function index(PhotoRepository $photoRepository, CountryRepository $countryRepository, CategoryRepository $categoryRepository): Response
     {
+        $photo = $photoRepository->findAll();
+        $country = $countryRepository->findAll();
+        $category = $categoryRepository->findAll();
+
         return $this->render('photo/index.html.twig', [
-            'photos' => $photoRepository->findAll(),
+            'photos' => $photo,
+            'country' => $country,
+            'category' => $category,
         ]);
     }
 

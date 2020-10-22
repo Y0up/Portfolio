@@ -40,10 +40,6 @@ class PhotoType extends AbstractType
                     'choice_label' => 'name'
                 ]
             )
-
-
-
-
             ->add(
                 'setting',
                 ChoiceType::class,

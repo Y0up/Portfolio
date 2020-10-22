@@ -6,55 +6,31 @@
 {% block body %}
 	<h1>Photo index</h1>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Image</th>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Address</th>
-				<th>Iso</th>
-				<th>Shutter</th>
-				<th>Focal</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for photo in photos %}
-				<tr>
-					<td>{{ photo.id }}</td>
-					<td><img src="{{ photo.image }}" alt="" style="height:50px; width:50px;"></td>
-					<td>{{ photo.title }}</td>
-					<td>{{ photo.description }}</td>
-					<td>{{ photo.address }}</td>
-					<td>
-						{% for setting in photo.setting %}
-							{{ setting.iso }}
-						{% endfor %}
-					</td>
-					<td>
-						{% for setting in photo.setting %}
-							{{ setting.shutter }}
-						{% endfor %}
-					</td>
-					<td>
-						{% for setting in photo.setting %}
-							{{ setting.focal }}
-						{% endfor %}
-					</td>
-					<td>
-						<a href="{{ path('photo_show', {'id': photo.id}) }}">show</a>
-						<a href="{{ path('photo_edit', {'id': photo.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="8">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+	{% for photo in photos %}
+		<article>
+			<img src="{{ photo.image }}" alt="">
+			<h1>{{ photo.title }}</h1>
+			<h2>{{ photo.address }}</h2>
+			<h3>
+				{% for setting in photo.setting %}
+					{{ setting.iso }}
+				{% endfor %}
+			</h3>
+			<h3>
+				{% for setting in photo.setting %}
+					{{ setting.shutter }}
+				{% endfor %}
+			</h3>
+			<h3>
+				{% for setting in photo.setting %}
+					{{ setting.focal }}
+				{% endfor %}
+			</h3>
+			<p>{{ photo.description }}</p>
+			<a href="{{ path('photo_show', {'id': photo.id}) }}">show</a>
+			<a href="{{ path('photo_edit', {'id': photo.id}) }}">edit</a>
+		</article>
+	{% endfor %}
 
 	<a href="{{ path('photo_new') }}">Create new</a>
 {% endblock %}
