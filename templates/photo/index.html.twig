@@ -5,31 +5,37 @@
 
 {% block body %}
 	<section>
-		<h1>Photo index</h1>
-
 		{% for photo in photos %}
 			<article>
-				<img src="{{ photo.image }}" alt="">
-				<h2>{{ photo.title }}</h1>
-				<h3>{{ photo.address }}</h2>
-				<h4>
-					{% for setting in photo.setting %}
-						{{ setting.iso }}
-					{% endfor %}
-				</h4>
-				<h4>
-					{% for setting in photo.setting %}
-						{{ setting.shutter }}
-					{% endfor %}
-				</h4>
-				<h4>
-					{% for setting in photo.setting %}
-						{{ setting.focal }}
-					{% endfor %}
-				</h4>
-				<p>{{ photo.description }}</p>
-				<a href="{{ path('photo_show', {'id': photo.id}) }}">show</a>
-				<a href="{{ path('photo_edit', {'id': photo.id}) }}">edit</a>
+				<div class="photo">
+					<img class="img" src="{{ photo.image }}" alt="">
+					<div id="content">
+						<div>
+							<h2>{{ photo.title }}</h1>
+						</div>
+						<div>
+							<p>{{ photo.description }}</p>
+						</div>
+						<div class="footer">
+							<h4>
+								{% for setting in photo.setting %}
+									{{ setting.iso }}
+								{% endfor %}
+							</h4>
+							<h4>
+								{% for setting in photo.setting %}
+									{{ setting.shutter }}
+								{% endfor %}
+							</h4>
+							<h4>
+								{% for setting in photo.setting %}
+									{{ setting.focal }}
+								{% endfor %}
+							</h4>
+						</div>
+					</div>
+				</div>
+				<h6>{{ photo.address }}</h6>
 			</article>
 		{% endfor %}
 
