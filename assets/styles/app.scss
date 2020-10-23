@@ -3,8 +3,9 @@ body {
 }
 
 header {
+    align-items: center;
     display: flex;
-	justify-content: center;
+    justify-content: space-between;
 	flex-direction: column;
     background-color: #e9ecef;
     opacity: 0.8;
@@ -14,11 +15,65 @@ header {
     margin-left: 2.5%;
     box-shadow: 2px 3px 33px -9px rgba(0,0,0,0.55);
     z-index: 1030;
+    padding-bottom: 30px;
+    
+    a{
+        text-decoration: none;
+            font-size: 0.750rem;
+            color: grey;
+        }
+
+    nav{
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: black;
+
+        a:hover{
+            color: black;
+            font-weight: 600;
+        }
+
+        div{
+            margin: 10px;
+            div {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+    
+                div {
+                    max-height: 0;
+                    overflow: hidden;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s, max-height 0.3s ease-in-out 0s;                }
+            }
+
+            div:hover div {
+                visibility: visible;
+                opacity: 1;
+                max-height: 200em;
+            }
+
+        }
+        
+        hr {
+            width: 50%;
+            opacity: 0.8;
+        }
+    
+    }
+
+    img {
+        margin-bottom: 2.5em;
+        width: 24px;
+    }
 }
 
 section {
     display: flex;
-    height: 94vh;
     padding-left: 200px;
 }
 
@@ -47,12 +102,14 @@ article {
             transition: 0.3s;
             background-color: rgba(0,0,0,0.55);
             height: 50%;
-            padding: 1rem;
+            width: 100%;
+            margin-right: 1rem;
     
             .footer{
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                padding: 10px;
             }
           }
     }

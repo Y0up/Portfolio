@@ -1,48 +1,43 @@
 <header>
+	<a href="{{path('photo_index')}}">Logo</a>
 	<nav>
-		<ul>
-			<li>
-				<a href="{{path('photo_index')}}">Logo</a>
-			</li>
-			<li>
-				<a href="{{path('photo_index')}}">Acceuil</a>
-			</li>
-			<li>
-				<a href="{{path('photo_index')}}">Pays</a>
-				<ul>
+		<div>
+			<a href="{{path('photo_index')}}">Acceuil</a>
+		</div>
+		<hr>
+		<div>
+			<div>
+				<a>Pays</a>
+				<div>
 					{% for countries in country %}
-						<li>
-							<a href="">{{countries.name}}</a>
-						</li>
+
+						<a href="">{{countries.name}}</a>
+
 					{% endfor %}
-				</ul>
-			</li>
-			<li>
-				<a href="{{path('photo_index')}}">Thèmes</a>
-				<ul>
+				</div>
+			</div>
+			<div>
+				<a>Thèmes</a>
+				<div>
 					{% for categories in category %}
-						<li>
-							<a href="">{{categories.name}}</a>
-						</li>
+
+						<a href="">{{categories.name}}</a>
+
 					{% endfor %}
-				</ul>
-			</li>
-		</ul>
-		<ul>
-			<li>
-				<a href="{{path('photo_index')}}">Shop</a>
-			</li>
-		</ul>
-		<ul>
-			<li>
-				<a href="{{path('photo_index')}}">Contact</a>
-			</li>
-			<li>
-				<a href="{{path('photo_index')}}">A propos</a>
-			</li>
-		</ul>
-		<ul>
-			<li><img src="" alt=""></li>
-		</ul>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div>
+			<a href="{{path('photo_index')}}">Shop</a>
+		</div>
+		<hr>
+		<div>
+			<a href="{{path('photo_index')}}">Contact</a>
+			<a href="{{path('photo_index')}}">A propos</a>
+		</div>
+
+
 	</nav>
+	<img src="https://picsum.photos/24" alt="">
 </header>
