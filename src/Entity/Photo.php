@@ -35,7 +35,7 @@ class Photo
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=16000)
      */
     private $address;
 

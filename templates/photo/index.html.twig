@@ -17,25 +17,26 @@
 							<p>{{ photo.description }}</p>
 						</div>
 						<div class="footer">
-							<h4>
+							<p>
 								{% for setting in photo.setting %}
 									{{ setting.iso }}
 								{% endfor %}
-							</h4>
-							<h4>
+							</p>
+							<p>
 								{% for setting in photo.setting %}
 									{{ setting.shutter }}
 								{% endfor %}
-							</h4>
-							<h4>
+							</p>
+							<p>
 								{% for setting in photo.setting %}
 									{{ setting.focal }}
 								{% endfor %}
-							</h4>
+							</p>
 						</div>
 					</div>
 				</div>
-				<h6>{{ photo.address }}</h6>
+				<p class="adress">{{ photo.address }},
+					{{ photo.country.name}}</p>
 			</article>
 		{% endfor %}
 

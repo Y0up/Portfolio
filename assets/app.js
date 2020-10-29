@@ -14,16 +14,14 @@ import './styles/app.scss';
 
 const imgs = document.getElementsByTagName('img');
 imgs.forEach(img => {
-    console.log(img);
-    let test = img.nextElementSibling;
-    console.log(test);
+    let info = img.nextElementSibling;
 
     img.addEventListener('click', function () {
-        if (test.style.display === "none") {
-            test.style.display = "flex"
+        if (info.style.display === "none") {
+            info.style.display = "flex"
         }
         else {
-            test.style.display = "none";
+            info.style.display = "none";
         }
     });
 });

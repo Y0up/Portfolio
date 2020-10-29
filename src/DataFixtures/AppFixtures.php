@@ -67,9 +67,24 @@ class AppFixtures extends Fixture
             $countryList[] = $country;
         }
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             $photo = new Photo();
-            $photo->setImage('https://picsum.photos/200/300');
+            $photo->setImage('https://picsum.photos/id/' . $faker->numberBetween(10, 300) . '/1080/1920');
+            $photo->setTitle($faker->word);
+            $photo->setDescription($faker->paragraph($nbSentences = 2, $variableNbSentences = true));
+            $photo->setAddress($faker->city);
+            $photo->setCountry($faker->randomElement($countryList));
+            $photo->addCategory($faker->randomElement($categoryList));
+            $photo->addSetting($faker->randomElement($settingFocalList));
+            $photo->addSetting($faker->randomElement($settingIsoList));
+            $photo->addSetting($faker->randomElement($settingShutterList));
+            $photo->setCreatedAt(new \DateTime);
+            $photo->setUpdatedAt(new \DateTime);
+            $manager->persist($photo);
+        }
+        for ($i = 0; $i < 25; $i++) {
+            $photo = new Photo();
+            $photo->setImage('https://picsum.photos/id/' . $faker->numberBetween(10, 300) . '/1920/1080');
             $photo->setTitle($faker->word);
             $photo->setDescription($faker->paragraph($nbSentences = 2, $variableNbSentences = true));
             $photo->setAddress($faker->city);
