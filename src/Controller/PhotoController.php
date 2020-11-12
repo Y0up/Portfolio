@@ -38,20 +38,32 @@ class PhotoController extends AbstractController
     /**
      * @Route("/category/{name}", name="photo_category", methods={"GET"})
      */
-    public function category(Category $category): Response
+    public function category(Category $category, CountryRepository $countryRepository, CategoryRepository $categoryRepository): Response
     {
-        return $this->render('photo/category.html.twig', [
+
+        $country = $countryRepository->findAll();
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('photo/index.html.twig', [
             'photos' => $category->getPhotos(),
+            'country' => $country,
+            'category' => $categories,
         ]);
     }
 
     /**
      * @Route("/country/{name}", name="photo_country", methods={"GET"})
      */
-    public function country(Country $country): Response
+    public function country(Country $country, CountryRepository $countryRepository, CategoryRepository $categoryRepository): Response
     {
-        return $this->render('photo/country.html.twig', [
+
+        $countries = $countryRepository->findAll();
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('photo/index.html.twig', [
             'photos' => $country->getPhotos(),
+            'country' => $countries,
+            'category' => $categories,
         ]);
     }
 
@@ -91,7 +103,7 @@ class PhotoController extends AbstractController
     /**
      * @Route("/{id}/edit", name="photo_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Photo $photo): Response
+    public function edit(Request $request, Photo $photo, CategoryRepository $categoryRepository, CountryRepository $countryRepository): Response
     {
         $form = $this->createForm(PhotoType::class, $photo);
         $form->handleRequest($request);
@@ -102,9 +114,11 @@ class PhotoController extends AbstractController
             return $this->redirectToRoute('photo_index');
         }
 
-        return $this->render('photo/edit.html.twig', [
+        return $this->render('admin/edit.html.twig', [
             'photo' => $photo,
             'form' => $form->createView(),
+            'category' => $categoryRepository->findAll(),
+            'country' => $countryRepository->findAll()
         ]);
     }
 
